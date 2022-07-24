@@ -1,0 +1,8 @@
+rule "LightsOffAtSunrise"
+when
+      Channel "astro:sun:e2b5474303:rise#event" triggered START
+then
+      if(LightBrightness.state > 0) {
+      sendCommand(LightBrightness, 0)
+}
+end

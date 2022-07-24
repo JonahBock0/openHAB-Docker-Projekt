@@ -1,0 +1,1 @@
+Dimmer LightBrightness "LightBrightness" [ "LightStripe" ] { channel="wled:json:3d795c8af1:globalBrightness" }

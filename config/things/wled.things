@@ -1,0 +1,1 @@
+Thing wled:json:3d795c8af1 "WLED via JSON API" [ pollTime=5, address="http://10.0.4.10", saturationThreshold=0, sortEffects=true, sortPalettes=true ]

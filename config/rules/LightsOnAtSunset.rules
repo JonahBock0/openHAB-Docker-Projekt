@@ -1,0 +1,8 @@
+rule "LightsOnAtSunset"
+when
+      Channel "astro:sun:e2b5474303:set#event" triggered START
+then
+      if(LightBrightness.state == 0) {
+      callScript("SunsetLights.script")
+}
+end

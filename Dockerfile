@@ -23,6 +23,15 @@ RUN apt-get update && apt-get install openhab -y && apt-get clean
 # Logging-Konfigurationsdatei bearbeiten um Logausgabe über STDOUT zu aktivieren
 RUN apt-get update && apt-get install xmlstarlet -y && xmlstarlet edit --inplace -P -i "(//Loggers/Root/AppenderRef)[1]" -t elem -n "AppenderRef"  -i "//Loggers/Root/AppenderRef[not(@ref)]" -t attr -n "ref" -v "STDOUT" /var/lib/openhab/etc/log4j2.xml && apt-get remove xmlstarlet -y && apt-get autoremove -y && apt-get clean
 
+# Konfiguration kopieren
+COPY ./config/rules/* /etc/openhab/rules/
+COPY ./config/scripts/* /etc/openhab/scripts/
+COPY ./config/things/* /etc/openhab/things/
+COPY ./config/items/* /etc/openhab/items/
+
+# Bindings wled und astro aktivieren
+RUN echo "binding = wled,astro" >> /etc/openhab/services/addons.cfg
+
 # Verwendung von Port 8080 markieren
 EXPOSE 8080
 # Verzeichnisse von openHAB als Volumes definieren
